@@ -10,20 +10,36 @@ from django.contrib.auth.models import User
 # Create your views here.
 
 def index(request):
-	movies = New.objects.all()
+	movies = New.objects.filter(category__name="Movie").order_by('-id')[:10]
+	series = New.objects.filter(category__name="Series").order_by('-id')[:10]
+	shows = New.objects.filter(category__name="Show").order_by('-id')[:10]
 	context = {
-		'movies': movies
+		'movies': movies,
+		'series': series,
+		'shows': shows,
 	}
 	return render(request, 'Saral/index.html', context)
 
 def movies(request):
-	return render(request, 'Saral/movies.html')
+	movies = New.objects.filter(category__name="Movie").order_by('-id')[:50]
+	context = {
+		'movies': movies
+	}
+	return render(request, 'Saral/movies.html', context)
 
 def series(request):
-	return render(request, 'Saral/series.html')
+	movies = New.objects.filter(category__name="Series").order_by('-id')[:50]
+	context = {
+		'movies': movies
+	}
+	return render(request, 'Saral/series.html', context)
 
 def shows(request):
-	return render(request, 'Saral/show.html')
+	movies = New.objects.filter(category__name="Show").order_by('-id')[:50]
+	context = {
+		'movies': movies
+	}
+	return render(request, 'Saral/show.html', context)
 
 def search(request):
 	qs = New.objects.filter(name__icontains=request.GET.get('searchData'))
@@ -66,18 +82,37 @@ def watch(request, pk):
 	abc = Rating.objects.filter(content_id=pk).aggregate(Avg('rating_number'))
 	com = Rating.objects.filter(content_id=pk)
 	print(abc)
-	if request.method == 'POST':
-		username = request.user
-		comment = request.POST.get('comment')
-		rating = request.POST.get('selectrate')
-		form = Rating.objects.create(content_id=pk,comments=comment,rating_number=rating, user=username)
-		
+	checking = Rating.objects.filter(content_id=pk, user__username=request.user.username).count()
+	if checking == 0:
+		if request.method == 'POST':
+			username = request.user
+			comment = request.POST.get('comment')
+			rating = request.POST.get('selectrate')
+			form = Rating.objects.create(content_id=pk,comments=comment,rating_number=rating, user=username)
+			
 
-		if form.save():
-			form.save()
+			if form.save():
+				form.save()
 
-		else:
-			print('not valid')
+			else:
+				print('not valid')
+	else:
+		print("already rated")
+		if request.method == 'POST':
+			username = request.user
+			comment = request.POST.get('comment')
+			rating = request.POST.get('selectrate')
+
+			form = Rating.objects.get(content_id=pk, user__username=request.user.username)
+			print(form.rating_number)
+			form.comments = comment
+			form.rating_number = rating
+
+			if form.save():
+				form.save()
+
+			else:
+				print('not valid')		
 
 	movies = New.objects.get(id=pk)
 	context = {
