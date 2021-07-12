@@ -1,0 +1,96 @@
+{% extends 'Saral/main.html' %}
+    
+    {% block content %}
+    {% load static %}
+    <div class="ratingbox">
+        <div class="rate-form">
+            {% if request.user.is_authenticated %}
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <select name="selectrate" id="abc" required>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select><br><br>
+                    <textarea cols="30" rows="10" class="textarea" placeholder="Comment" name="comment" id="comment"></textarea><br><br>
+                    <button class="btn btn-outline-danger p-2">Submit</button>
+                </form>
+            {% else %}
+                <h1>Please Login</h1>
+            {% endif %}
+            
+        </div>
+    </div>
+    <div class="trailer-box"> 
+        <div class="container-trailer">
+            <span class="close-trailer"><i class="fas fa-times"></i></span>
+            <span><iframe id="trailer" width="560" height="315" src="{{movies.source_vid}}"  frameborder="0" allowfullscreen></iframe></span>    
+        </div>
+    </div>
+    <div class="container-fluid mt-4">
+        <div class="container content-desc-box">
+            <div class="row pt-3 desc-box">
+                <span class="desc-name">
+                        {{movies.name}}
+                </span>                
+                <span class="pt-4 pb-4">
+                    <i class="pl-2 rating-number pr-1">
+                    {% if abc.rating_number__avg == None %}
+                        <i class="pr-2">Not Yet Reviewed</i>
+                    {% else %}
+                        {{abc.rating_number__avg|floatformat:1}}<i class="pl-2 fas fa-star pr-3"></i>
+                    {%endif%}                   
+                    
+                    
+                    <i class="age-criteria">{{movies.contentAge}}</i>
+                </span>
+                <span class="content-desc">
+                    <p>
+                        {{movies.description}}
+                    </p>
+                </span>
+                <span><span class="bbbb pr-1">Starring:</span><span>{{movies.starring}}</span></span><br>
+                <span><span class="bbbb pr-1">Genres:</span>
+                {% for i in movies.genres.all %}
+                    {{i.name}}
+                {% endfor %}
+                </span><br>
+                <span><span class="bbbb pr-1">Tag:</span>
+                {% for i in movies.tag.all %}
+                    {{i.name}}
+                {% endfor %}
+                </span><br><br>
+                <span class="pt-5">
+                    <span class="pr-3"><button class="btn-trailer">Watch Trailer</button></span>
+                    <span class="pr-3"><button class="btn-rating">Rate Now</button></span>
+                </span>
+            </div>
+        </div>
+        <div class="container mt-4">
+            <div class="row">
+                Comments: <br>
+            </div>
+            
+                
+                {% for com in com %}
+                <div class="row">
+                    <div class="col-md-6 comment-box pt-2 pb-2 mt-2">
+                        <div class="row">
+                            <div class="col-6 ">{{com.user.username}}</div>
+                            <div class="col-6 text-right">{{com.rating_number}}<i class="fas fa-star pl-2"></i></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                {{com.comments}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+        </div>
+
+    </div>
+    {% endblock %}

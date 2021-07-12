@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/owl.theme.default.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/responsive.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <div class="side-bar">
+        <span class="closeBtn-sidebar"><i class="fas fa-minus"></i></span>
+        <ul class="ul-sidebar-menu">
+            <a href="{% url 'index' %}"><li>Home</li></a>
+            <a href="{% url 'index' %}"><li>Movies</li></a>
+            <a href="{% url 'index' %}"><li>Series</li></a>
+            <a href="{% url 'index' %}"><li>TV Shows</li></a>
+        </ul>
+    </div>
+    <div class="container-fluid fixed-menu">
+        <div class="container">
+            <div class="row align-items-center pt-2 pb-2">
+                <div class="logo-area">
+                    <span class="logo-img">                        
+                        <a href="{% url 'index' %}"><img src="{% static 'assets/images/logo/logo.png' %}" alt=""></a>
+                    </span>
+                </div>
+                <div class="menu-area">
+                    <span class="hamberger"><i class="fas fa-ellipsis-h"></i></span>
+                    <ul class="main-menu">
+                        <a href="{% url 'index' %}"><li>Home</li></a>
+                        <a href="{% url 'index' %}"><li>Movies</li></a>
+                        <a href="{% url 'index' %}"><li>Series</li></a>
+                        <a href="{% url 'index' %}"><li>TV Shows</li></a>
+                    </ul>
+                </div>
+                <div class=" control-area align-items-center">
+                    <div class="controls">
+                        <span class="search-icon pr-3"><i class="fas fa-search"></i>
+                            <div class="search-area">
+                                <form action="">
+                                    <input type="text">
+                                    <button class="searchBtn">Search</button>
+                                </form>
+                            </div>
+                        </span>
+                        <span class="user-icon"><img src="{% static 'assets/images/icons/user.png' %}" alt="">
+                            <ul class="user-menu">
+                                {% if request.user.is_authenticated %}
+                                    <a href="{% url 'profile' %}" class="href-none"><li><i class="fas fa-address-card pr-2 user-fa"></i>Manage Profile</li></a>
+                                    <a href="{% url 'logoutuser' %}" class="href-none"><li><i class="fas fa-sign-out-alt pr-2 user-fa"></i>Logout</li></a>
+                                {% else %}
+                                    <a href="{% url 'logoutuser' %}" class="href-none"><li><i class="fas fa-sign-in-alt pr-2 user-fa"></i>Login</li></a>
+                                {% endif %}
+                            </ul>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% block content %}
+
+
+    {% endblock %}
+    <script src="{% static 'assets/js/jquery.js' %}"></script>
+    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'assets/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'assets/js/main.js' %}"></script>
+    <script src="https://kit.fontawesome.com/3658bb41b4.js" crossorigin="anonymous"></script>
+</body>
+</html>

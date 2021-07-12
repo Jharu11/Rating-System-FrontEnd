@@ -1,0 +1,263 @@
+
+    {% extends 'Saral/main.html' %}
+    {% block content %}
+        {% load static %}
+        <div class="container mt-2">
+        <div class="row pt-5">
+            <h3>Latest Movies</h3>
+
+            <div class="owl-carousel owl-theme">
+                {% for movie in movies %}
+                <div class="item">
+                    <div class="suggestion-container">
+                        <div class="img-div">
+                            <img src="{{movie.image.url}}" alt="{{movie.name}}" class="sugg-img">
+                        </div>
+                        <a href="{% url 'watch' movie.id %}" class="href-none"><h5 class=" pt-2 pb-1 text-uppercase"><b>{{movie.name}}</b></h5></a>
+                        <div class="absolute-div pb-1">
+                            <span>{{movie.publishDate}}</span>
+                            <span>{{movie.contentAge}}</span>
+                            <span>
+                                {% for i in movie.genres.all|slice:':1' %}
+                                    {{ i.name }}
+                                {% endfor %}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                
+        </div>
+        </div>
+    </div>
+
+    <div class="container mt-2">
+        <div class="row pt-5">
+            <h3>Latest Shows</h3>
+
+            <div class="owl-carousel owl-theme">
+                <div class="item">
+                    <div class="suggestion-container">
+                        <div class="img-div">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu_kH8XXXHDZ3nTq_uFlpkMLXQhjTyLmSsrQ&usqp=CAU" alt="" class="sugg-img">
+                        </div>
+                        <a href="watch.html" class="href-none"><h5 class=" pt-2 pb-1"><b>HOW IT ENDS</b></h5></a>
+                        <div class="absolute-div pb-1">
+                            <span>2021</span>
+                            <span>18+</span>
+                            <span>Action</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="suggestion-container">
+                        <div class="img-div">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu_kH8XXXHDZ3nTq_uFlpkMLXQhjTyLmSsrQ&usqp=CAU" alt="" class="sugg-img">
+                        </div>
+                        <a href="watch.html" class="href-none"><h5 class=" pt-2 pb-1"><b>HOW IT ENDS</b></h5></a>
+                        <div class="absolute-div pb-1">
+                            <span>2021</span>
+                            <span>18+</span>
+                            <span>Action</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="suggestion-container">
+                        <div class="img-div">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu_kH8XXXHDZ3nTq_uFlpkMLXQhjTyLmSsrQ&usqp=CAU" alt="" class="sugg-img">
+                        </div>
+                        <a href="watch.html" class="href-none"><h5 class=" pt-2 pb-1"><b>HOW IT ENDS</b></h5></a>
+                        <div class="absolute-div pb-1">
+                            <span>2021</span>
+                            <span>18+</span>
+                            <span>Action</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="suggestion-container">
+                        <div class="img-div">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu_kH8XXXHDZ3nTq_uFlpkMLXQhjTyLmSsrQ&usqp=CAU" alt="" class="sugg-img">
+                        </div>
+                        <a href="watch.html" class="href-none"><h5 class=" pt-2 pb-1"><b>HOW IT ENDS</b></h5></a>
+                        <div class="absolute-div pb-1">
+                            <span>2021</span>
+                            <span>18+</span>
+                            <span>Action</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="suggestion-container">
+                        <div class="img-div">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu_kH8XXXHDZ3nTq_uFlpkMLXQhjTyLmSsrQ&usqp=CAU" alt="" class="sugg-img">
+                        </div>
+                        <a href="watch.html" class="href-none"><h5 class=" pt-2 pb-1"><b>HOW IT ENDS</b></h5></a>
+                        <div class="absolute-div pb-1">
+                            <span>2021</span>
+                            <span>18+</span>
+                            <span>Action</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="suggestion-container">
+                        <div class="img-div">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu_kH8XXXHDZ3nTq_uFlpkMLXQhjTyLmSsrQ&usqp=CAU" alt="" class="sugg-img">
+                        </div>
+                        <a href="watch.html" class="href-none"><h5 class=" pt-2 pb-1"><b>HOW IT ENDS</b></h5></a>
+                        <div class="absolute-div pb-1">
+                            <span>2021</span>
+                            <span>18+</span>
+                            <span>Action</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="suggestion-container">
+                        <div class="img-div">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu_kH8XXXHDZ3nTq_uFlpkMLXQhjTyLmSsrQ&usqp=CAU" alt="" class="sugg-img">
+                        </div>
+                        <a href="watch.html" class="href-none"><h5 class=" pt-2 pb-1"><b>HOW IT ENDS</b></h5></a>
+                        <div class="absolute-div pb-1">
+                            <span>2021</span>
+                            <span>18+</span>
+                            <span>Action</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="suggestion-container">
+                        <div class="img-div">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu_kH8XXXHDZ3nTq_uFlpkMLXQhjTyLmSsrQ&usqp=CAU" alt="" class="sugg-img">
+                        </div>
+                        <a href="watch.html" class="href-none"><h5 class=" pt-2 pb-1"><b>HOW IT ENDS</b></h5></a>
+                        <div class="absolute-div pb-1">
+                            <span>2021</span>
+                            <span>18+</span>
+                            <span>Action</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-2">
+        <div class="row pt-5">
+            <h3>Latest Series</h3>
+
+            <div class="owl-carousel owl-theme">
+                <div class="item">
+                    <div class="suggestion-container">
+                        <div class="img-div">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu_kH8XXXHDZ3nTq_uFlpkMLXQhjTyLmSsrQ&usqp=CAU" alt="" class="sugg-img">
+                        </div>
+                        <a href="watch.html" class="href-none"><h5 class=" pt-2 pb-1"><b>HOW IT ENDS</b></h5></a>
+                        <div class="absolute-div pb-1">
+                            <span>2021</span>
+                            <span>18+</span>
+                            <span>Action</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="suggestion-container">
+                        <div class="img-div">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu_kH8XXXHDZ3nTq_uFlpkMLXQhjTyLmSsrQ&usqp=CAU" alt="" class="sugg-img">
+                        </div>
+                        <a href="watch.html" class="href-none"><h5 class=" pt-2 pb-1"><b>HOW IT ENDS</b></h5></a>
+                        <div class="absolute-div pb-1">
+                            <span>2021</span>
+                            <span>18+</span>
+                            <span>Action</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="suggestion-container">
+                        <div class="img-div">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu_kH8XXXHDZ3nTq_uFlpkMLXQhjTyLmSsrQ&usqp=CAU" alt="" class="sugg-img">
+                        </div>
+                        <a href="watch.html" class="href-none"><h5 class=" pt-2 pb-1"><b>HOW IT ENDS</b></h5></a>
+                        <div class="absolute-div pb-1">
+                            <span>2021</span>
+                            <span>18+</span>
+                            <span>Action</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="suggestion-container">
+                        <div class="img-div">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu_kH8XXXHDZ3nTq_uFlpkMLXQhjTyLmSsrQ&usqp=CAU" alt="" class="sugg-img">
+                        </div>
+                        <a href="watch.html" class="href-none"><h5 class=" pt-2 pb-1"><b>HOW IT ENDS</b></h5></a>
+                        <div class="absolute-div pb-1">
+                            <span>2021</span>
+                            <span>18+</span>
+                            <span>Action</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="suggestion-container">
+                        <div class="img-div">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu_kH8XXXHDZ3nTq_uFlpkMLXQhjTyLmSsrQ&usqp=CAU" alt="" class="sugg-img">
+                        </div>
+                        <a href="watch.html" class="href-none"><h5 class=" pt-2 pb-1"><b>HOW IT ENDS</b></h5></a>
+                        <div class="absolute-div pb-1">
+                            <span>2021</span>
+                            <span>18+</span>
+                            <span>Action</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="suggestion-container">
+                        <div class="img-div">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu_kH8XXXHDZ3nTq_uFlpkMLXQhjTyLmSsrQ&usqp=CAU" alt="" class="sugg-img">
+                        </div>
+                        <a href="watch.html" class="href-none"><h5 class=" pt-2 pb-1"><b>HOW IT ENDS</b></h5></a>
+                        <div class="absolute-div pb-1">
+                            <span>2021</span>
+                            <span>18+</span>
+                            <span>Action</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="suggestion-container">
+                        <div class="img-div">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu_kH8XXXHDZ3nTq_uFlpkMLXQhjTyLmSsrQ&usqp=CAU" alt="" class="sugg-img">
+                        </div>
+                        <a href="watch.html" class="href-none"><h5 class=" pt-2 pb-1"><b>HOW IT ENDS</b></h5></a>
+                        <div class="absolute-div pb-1">
+                            <span>2021</span>
+                            <span>18+</span>
+                            <span>Action</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="suggestion-container">
+                        <div class="img-div">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu_kH8XXXHDZ3nTq_uFlpkMLXQhjTyLmSsrQ&usqp=CAU" alt="" class="sugg-img">
+                        </div>
+                        <a href="watch.html" class="href-none"><h5 class=" pt-2 pb-1"><b>HOW IT ENDS</b></h5></a>
+                        <div class="absolute-div pb-1">
+                            <span>2021</span>
+                            <span>18+</span>
+                            <span>Action</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+    
+
+
+    
