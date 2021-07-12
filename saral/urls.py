@@ -12,4 +12,6 @@ urlpatterns = [
     path('signup/',views.signup, name='signup'),
     path('logout/',views.logoutuser, name='logoutuser'),
     path('profile/',views.profile, name='profile'),
+    path('autocomplete/',views.autocomplete, name='autocomplete'),
+    path('search/',views.search, name='search'),
 ]

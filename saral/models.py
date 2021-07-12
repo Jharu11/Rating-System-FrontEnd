@@ -1,7 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.dispatch import receiver
+from django.db.models.signals import post_save
 # Create your models here.
 
+
+		 
 class Category(models.Model):
 	cat_choice = [
 		('Movie','Movie'),
@@ -40,10 +44,19 @@ class Rating(models.Model):
 	rating_number = models.IntegerField(blank=False)
 	user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
 
+	def __str__(self):
+		return self.user.username
+
 class Customer(models.Model):
-	name = models.ForeignKey(User, on_delete=models.CASCADE)
-	image = models.ImageField(upload_to="user_image/")
+	user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
+	image = models.ImageField(upload_to="user_image/", null=True, blank=True)
 	dob = models.DateField()
 
 	def __str__(self):
-		return self.name.username
+		return self.user.username
+
+
+@receiver(post_save, sender=User)
+def create_profile(sender, instance, created, **kwargs):
+	if created:
+		Customer.objects.create(user=instance)

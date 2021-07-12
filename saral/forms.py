@@ -10,7 +10,8 @@ class UserForm(UserCreationForm):
 		model = User
 		fields = ['username', 'email', 'password1', 'password2' ]
 
-class UserProfile(ModelForm):
+class UserProfile(UserCreationForm):
 	class Meta:
 		model = Customer
-		fields = ['image', 'dob']
+		fields = '__all__'
+		exclude = ['name']

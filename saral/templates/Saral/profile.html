@@ -2,17 +2,29 @@
     
     {% block content %}
     {% load static %}
+    {% load widget_tweaks %}
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    
     <div class="container-fluid mt-5">
         <div class="container">
             <div class="row pt-3">
                 <div class="col-md-6">
+                    <img src="{{request.user.customer.image.url}}" class="profile-img-ims">
                     <h1>Information:</h1>
-                    <span class="bbbb pr-2">Username :</span><span>{{abcr.name}}</span><br>
-                    <span class="bbbb pr-2">Email :</span><span></span><br>
-                    {{newForm}}
+                    <span class="bbbb pr-2">Username :</span><span>{{request.user.username}}</span><br>
+                    <span class="bbbb pr-2">Email :</span><span>{{request.user.email}}</span><br>
+
+                    <br>
+                    <form method="POST" enctype="multipart/form-data" class="pb-2">
+                        {% csrf_token %}
+                        <input type="file" name="image"><br><br>
+                        <input type="date" name="dob" value="{{customers}}" id="datepicker"> <br><br>
+                        <button class="btn btn-outline-danger">Update</button>
+                    </form>
                 </div>
             </div>
         </div>
 
     </div>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     {% endblock %}
